@@ -1,0 +1,23 @@
+{
+  "name": "@sammiio/git-flow-npm",
+  "version": "0.1.0",
+  "description": "git flow test",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/silver-panda/git-flow-npm.git"
+  },
+  "keywords": [
+    "git",
+    "git-flow"
+  ],
+  "author": "ladysamantha",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/silver-panda/git-flow-npm/issues"
+  },
+  "homepage": "https://github.com/silver-panda/git-flow-npm#readme"
+}
