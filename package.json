@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "git flow test",
   "main": "lib/index.js",
+  "private": false,
   "scripts": {
     "test": "exit 0"
   },
