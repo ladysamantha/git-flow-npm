@@ -1,6 +1,6 @@
 {
   "name": "@sammiio/git-flow-npm",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "git flow test",
   "main": "lib/index.js",
   "private": false,
