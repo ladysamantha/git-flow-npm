@@ -1,24 +1,18 @@
 {
-  "name": "@sammiio/git-flow-npm",
-  "version": "0.1.2",
-  "description": "git flow test",
-  "main": "lib/index.js",
-  "private": false,
-  "scripts": {
-    "test": "exit 0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/silver-panda/git-flow-npm.git"
-  },
-  "keywords": [
-    "git",
-    "git-flow"
-  ],
-  "author": "ladysamantha",
+  "name": "git-flow-npm",
+  "version": "0.0.0",
+  "description": "monorepo root",
+  "main": "index.js",
+  "repository": "https://github.com/silver-panda/git-flow-npm.git",
+  "author": "ladysamantha <ladysamantha@protonmail.com>",
   "license": "GPL-3.0",
-  "bugs": {
-    "url": "https://github.com/silver-panda/git-flow-npm/issues"
+  "private": true,
+  "devDependencies": {
+    "lerna": "^3.22.1"
   },
-  "homepage": "https://github.com/silver-panda/git-flow-npm#readme"
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  }
 }

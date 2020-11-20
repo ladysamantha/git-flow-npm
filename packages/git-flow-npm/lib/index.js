@@ -1,0 +1,1 @@
+exports.bang = (arg) => console.log(`bang ${arg}!`);

@@ -7,7 +7,7 @@ version: 2
 defaults: &defaults
   working_directory: ~/repo
   docker:
-    - image: circleci/node:8.9.1
+    - image: circleci/node:14.8.0
 
 jobs:
   test:
@@ -17,14 +17,14 @@ jobs:
 
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
+            - v1-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
 
-      - run: npm install
+      - run: yarn install --frozen-lockfile
       - run:
           name: Run tests
-          command: npm test
+          command: yarn lerna run tests
 
       - save_cache:
           paths:
@@ -34,6 +34,23 @@ jobs:
       - persist_to_workspace:
           root: ~/repo
           paths: .
+  version:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - run:
+          name: checkout main
+          command: git checkout main
+      - run:
+          name: bump version
+          command: yarn lerna version prerelease
+      - run:
+          name: push back to develop
+          command: |
+            git checkout develop
+            git merge --no-ff -m "version bump [ci skip]" "$CIRCLE_BRANCH"
+            git push origin develop
   deploy:
     <<: *defaults
     steps:
@@ -44,7 +61,7 @@ jobs:
           command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc
       - run:
           name: Publish package
-          command: npm publish --access public
+          command: yarn lerna publish
 
 workflows:
   version: 2
@@ -52,8 +69,14 @@ workflows:
     jobs:
       - test:
           filters:
-            tags:
-              only: /^v.*/
+            branches:
+              only: /^develop$/
+      - version:
+          requires:
+            - test
+          filters:
+            branches:
+              only: /^release.*/
       - deploy:
           requires:
             - test
@@ -61,4 +84,4 @@ workflows:
             tags:
               only: /^v.*/
             branches:
-              ignore: /.*/
+              only: main
