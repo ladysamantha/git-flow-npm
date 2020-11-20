@@ -39,7 +39,9 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/repo
-      - add_ssh_keys
+      - add_ssh_keys:
+          fingerprints:
+            - "96:35:ee:ec:77:19:88:d1:3e:a4:c2:20:01:42:66:14"
       - run:
           name: checkout main
           command: git checkout main
