@@ -39,6 +39,7 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/repo
+      - add_ssh_keys
       - run:
           name: checkout main
           command: git checkout main
