@@ -70,8 +70,10 @@ workflows:
       - test:
           filters:
             branches:
-              only: /^develop$/
+              only: [/^develop$/, /^release.*/]
       - version:
+          requires:
+            - test
           filters:
             branches:
               only: /^release.*/
