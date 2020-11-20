@@ -44,7 +44,7 @@ jobs:
           command: git checkout main
       - run:
           name: bump version
-          command: yarn lerna version prerelease
+          command: yarn lerna version prerelease --preid beta --yes
       - run:
           name: push back to develop
           command: |
