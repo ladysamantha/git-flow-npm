@@ -45,7 +45,7 @@ jobs:
       - run:
           name: hack
           command: ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
-      - run: |
+      - run:
           command: |
             git config --global user.name "Circle CI"
             git config --global user.email "circleci-bot@example.com"
