@@ -39,12 +39,22 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/repo
+      - add_ssh_keys:
+          fingerprints:
+            - "c2:fd:ff:c2:78:47:51:f9:09:d3:87:50:70:13:8b:51"
+      - run:
+          name: hack
+          command: ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+      - run:
+          command: |
+            git config --global user.name "Circle CI"
+            git config --global user.email "circleci-bot@example.com"
       - run:
           name: checkout main
           command: git checkout main
       - run:
           name: bump version
-          command: yarn lerna version prerelease
+          command: yarn lerna version prerelease --preid beta --yes
       - run:
           name: push back to develop
           command: |
@@ -70,7 +80,7 @@ workflows:
       - test:
           filters:
             branches:
-              only: /^develop$/
+              only: [/^develop$/, /^release.*/]
       - version:
           requires:
             - test
