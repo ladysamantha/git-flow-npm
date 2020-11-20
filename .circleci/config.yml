@@ -41,7 +41,7 @@ jobs:
           at: ~/repo
       - add_ssh_keys:
           fingerprints:
-            - "96:35:ee:ec:77:19:88:d1:3e:a4:c2:20:01:42:66:14"
+            - "c2:fd:ff:c2:78:47:51:f9:09:d3:87:50:70:13:8b:51"
       - run:
           name: checkout main
           command: git checkout main
