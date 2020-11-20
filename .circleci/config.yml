@@ -71,7 +71,7 @@ jobs:
           command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc
       - run:
           name: Publish package
-          command: yarn lerna publish
+          command: yarn lerna publish from-git --yes
 
 workflows:
   version: 2
@@ -92,6 +92,6 @@ workflows:
             - test
           filters:
             tags:
-              only: /^v.*/
+              only: /^@sammiio.*/
             branches:
               only: main
